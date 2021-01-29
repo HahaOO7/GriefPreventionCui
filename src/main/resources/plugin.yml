@@ -1,0 +1,7 @@
+name: GriefPreventionCui
+version: ${project.version}
+main: at.haha007.griefpreventioncui.GriefPreventionCui
+api-version: 1.16
+depend: [GriefPrevention]
+authors: [Haha007]
+description: Client user interface for Griefprevention Claims
