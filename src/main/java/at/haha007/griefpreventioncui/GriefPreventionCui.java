@@ -29,7 +29,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 		Collection<Claim> claims = new ArrayList<>();
 		int radius = distance;
 		Chunk lowest = center.subtract(radius, 0, radius).getChunk();
-		Chunk highest = center.add(radius, 0, radius).getChunk();
+		Chunk highest = center.add(radius * 2, 0, radius * 2).getChunk();
 		DataStore dataStore = GriefPrevention.instance.dataStore;
 		for (int chunk_x = lowest.getX(); chunk_x <= highest.getX(); chunk_x++) {
 			for (int chunk_z = lowest.getZ(); chunk_z <= highest.getZ(); chunk_z++) {
@@ -73,6 +73,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 	}
 
 	private void displayZSurface(int z, Player player, int minX, int maxX, Particle particle) {
+		if (Math.abs(player.getLocation().getBlockZ() - z) > distance) return;
 		Location center = player.getLocation();
 		int x = center.getBlockX();
 		int y = center.getBlockY();
@@ -87,6 +88,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 	}
 
 	private void displayXSurface(int x, Player player, int minZ, int maxZ, Particle particle) {
+		if (Math.abs(player.getLocation().getBlockX() - x) > distance) return;
 		Location center = player.getLocation();
 		int z = center.getBlockZ();
 		int y = center.getBlockY();
