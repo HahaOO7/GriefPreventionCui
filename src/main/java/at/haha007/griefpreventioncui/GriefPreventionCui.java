@@ -50,7 +50,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 			filter(player -> player.hasPermission("gpcui.display")).
 			filter(player -> player.getInventory().getItemInMainHand().getType() == Material.GOLDEN_SHOVEL).
 			forEach(player -> getNearbyClaims(player.getLocation()).
-				spliterator().
+				stream().distinct().spliterator().
 				forEachRemaining(claim -> displayClaim(player, claim, false)));
 	}
 
@@ -82,7 +82,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 		for (int px = Math.max(x - distance, minX); px <= max; px++) {
 			if (px < minX || px > maxX) continue;
 			for (int py = y - 2; py <= y + 1; py++) {
-				player.spawnParticle(particle, new Location(center.getWorld(), px, py, z), 1, .2, 0, 0, 0);
+				player.spawnParticle(particle, new Location(center.getWorld(), px, py, z), 3, .2, 0, 0, 0);
 			}
 		}
 	}
@@ -96,7 +96,7 @@ public class GriefPreventionCui extends JavaPlugin implements Listener {
 		int max = Math.min(maxZ, z + distance);
 		for (int pz = Math.max(z - distance, minZ); pz <= max; pz++) {
 			for (int py = y - 2; py <= y + 1; py++) {
-				player.spawnParticle(particle, new Location(center.getWorld(), x, py, pz), 1, 0, 0, .2, 0);
+				player.spawnParticle(particle, new Location(center.getWorld(), x, py, pz), 3, 0, 0, .2, 0);
 			}
 		}
 	}
